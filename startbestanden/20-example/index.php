@@ -10,7 +10,7 @@
  $databaseHost = "localhost";
  $databaseName = "stackoverflow";
  $databaseUser = "stackuser";
- $databasePassword = "stackpass";
+ $databasePassword = "stack";
 
  $pdo = new PDO("mysql:host=" . $databaseHost . ";dbname=" . $databaseName, $databaseUser, $databasePassword);
  $pdo->exec("SET CHARACTER SET utf8");
@@ -33,7 +33,7 @@
 
        foreach ($users as $user) {
          echo '<li>';
-         echo '<a href="user-detail.php?id=' . $user['id'] . '">';
+         echo '<a href="user-detail.php?id=' . $user['id'] . '">';  //querystring meegeven
          echo $user['display_name'];
          echo '</a>';
          echo '</li>';

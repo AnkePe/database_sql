@@ -4,7 +4,7 @@ include('database.php');
 $title = 'User Detail';
 include('_top.php');
 ?>
-<?php
+<?php   //eigenlijk niet nodig om alles in aparte php tags te zetten, kan allemaal in 1 php stuk
 if (isset($_GET['id'])) {
   $sql = "SELECT * FROM `users` WHERE `id` = :id";
   $stmt = $pdo->prepare($sql);
@@ -23,4 +23,4 @@ if (empty($user)) {
   echo '</dl>';
 }
 ?>
-<?php include('_bottom.php');?>
+<?php include('_bottom.php');?>   

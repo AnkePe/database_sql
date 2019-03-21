@@ -24,7 +24,21 @@ include('database.php');
 $title = 'Overview';
 include('_top.php');
 ?>
+<ol>
+<?php
+$sql = "SELECT * from `posts` where `title` != '' order by `last_activity_date` DESC LIMIT 100";
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// var_dump($posts);
 
-
-
+foreach ($posts as $post) {
+    echo '<li>';
+    echo '<a href="post-detail.php?id=' . $post['id'] . '">';
+    echo $post['title'];
+    echo '</a>';
+    echo '</li>';
+}
+?>
+</ol>
 <?php include('_bottom.php');?>

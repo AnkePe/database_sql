@@ -6,14 +6,14 @@
 $databaseHost = "localhost";
 $databaseName = "stackoverflow";
 $databaseUser = "stackuser";
-$databasePassword = "stackpass";
+$databasePassword = "stack";
 
 $pdo = new PDO("mysql:host=" . $databaseHost . ";dbname=" . $databaseName, $databaseUser, $databasePassword);
 $pdo->exec("SET CHARACTER SET utf8");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-$id = 2;
+$id = 2;  //variabele definieren
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,7 +23,7 @@ $id = 2;
   </head>
   <body>
       <?php
-      $sql = "SELECT * FROM `users` WHERE `id` = :id";
+      $sql = "SELECT * FROM `users` WHERE `id` = :id";  //met :id variabele oproepen
       $stmt = $pdo->prepare($sql);
       $stmt->bindValue(':id', $id);
       $stmt->execute();

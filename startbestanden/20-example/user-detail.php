@@ -2,7 +2,7 @@
 $databaseHost = "localhost";
 $databaseName = "stackoverflow";
 $databaseUser = "stackuser";
-$databasePassword = "stackpass";
+$databasePassword = "stack";
 
 $pdo = new PDO("mysql:host=" . $databaseHost . ";dbname=" . $databaseName, $databaseUser, $databasePassword);
 $pdo->exec("SET CHARACTER SET utf8");
@@ -20,7 +20,7 @@ $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
       if (isset($_GET['id'])) {
         $sql = "SELECT * FROM `users` WHERE `id` = :id";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindValue(':id', $_GET['id']);
+        $stmt->bindValue(':id', $_GET['id']); //haal id uit de querystring
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
       }

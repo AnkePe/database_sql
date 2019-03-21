@@ -5,7 +5,7 @@ $title = 'Comment Detail';
 include('_top.php');
 ?>
 <?php
-if (!isset($_GET['id'])) {
+if (isset($_GET['id'])) {
   $sql = "SELECT * FROM `comments` WHERE `id` = :id";
   $stmt = $pdo->prepare($sql);
   $stmt->bindValue(':id', $_GET['id']);
@@ -22,14 +22,14 @@ if (empty($comment)) {
   }
   echo '</dl>';
 
-  $sql = "SELECT * FROM `users` WHERE `id` = :user_id";
+  $sql = "SELECT * FROM `users` WHERE `id` = :id";
   $stmt = $pdo->prepare($sql);
   $stmt->bindValue(':id', $comment['user_id']);
   $stmt->execute();
   $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
   echo '<header><h2>Comment geplaatst door:</h2></header>';
-  if (empty($user)) {
+  if (!empty($user)) {
     echo '<dl>';
     foreach($user as $col => $value) {
       echo '<dt>' . $col . '</dt>';

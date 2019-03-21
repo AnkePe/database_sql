@@ -7,20 +7,21 @@
  * > op de detailpagina ook de user info kan zien (die de comment geplaatst heeft)
  */
 include('database.php');
-
+$title = 'Overview';
 include('_top.php');
 ?>
 <ol>
   <?php
-  $sql = "SELECT * FROM `comments` LIMIT 10 WHERE `score` > 0";
+  $sql = "SELECT * FROM `comments` WHERE `score` > 0 LIMIT 10";
   $stmt = $pdo->prepare($sql);
   $stmt->execute();
   $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  // var_dump ($comments);
 
   foreach ($comments as $comment) {
    echo '<li>';
-   echo '<a href="comment.php?id=' . $comments['id'] . '">';
-   echo $comments['text'];
+   echo '<a href="comment-detail.php?id=' . $comment['id'] . '">';
+   echo $comment['text'];
    echo '</a>';
    echo '</li>';
   }
